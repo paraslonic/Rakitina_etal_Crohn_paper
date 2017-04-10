@@ -1,5 +1,6 @@
 library(ape)
 library(phangorn) 
+library(vegan)
 
 strains_num <-  read.delim("../tmp/strains_num", head = F)
 colnames(strains_num) <- c("strain","num")
@@ -64,4 +65,5 @@ legend(-0.002,18, c("Crohn","CrohnLit","Pathogenic","Non pathogenic","Other"), f
 pjj = strains.long %in% have.jj
 plf = strains.long %in% have.pLF82
 dev.off()
+
 

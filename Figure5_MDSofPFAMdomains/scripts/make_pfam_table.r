@@ -24,4 +24,4 @@ rownames(pfam.table) = pfam.table$strain
 pfam.table = pfam.table[,-match("strain", colnames(pfam.table))]
 
 write.table(pfam.table, "pfam_table",quote=F, sep="\t",row.names = T)
-write.table(pfams.long, "pfams_long",quote=F, sep="\t",row.names = F)
+#write.table(pfams.long, "pfams_long",quote=F, sep="\t",row.names = F)

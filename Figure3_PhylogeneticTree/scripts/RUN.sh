@@ -18,6 +18,8 @@ echo "selecting core genes"
 sed -i 's/://' ../OrthologousGroups.txt
 perl namedGroups2table.pl ../OrthologousGroups.txt
 
+Rscript plot_pangenomedist.r
+
 Rscript selectCoreGenes.r
 
 cat ../ffn/*.fasta > ../tmp/allgenes.fasta
