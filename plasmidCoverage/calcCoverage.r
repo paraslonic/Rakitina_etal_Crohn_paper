@@ -20,4 +20,4 @@ barplot(cov, las=2, col = "dodgerblue3", cex.names=  0.6, hor=TRUE, xlab="pLF82 
 dev.off()
 cov = data.frame(names(cov),cov)
 colnames(cov) = c("strain","plasmid coverage")
-write.csv(cov,"coverage.csv", row.names=FALSE)
+write.csv(cov,"coverage_pLF82.csv", row.names=FALSE)
