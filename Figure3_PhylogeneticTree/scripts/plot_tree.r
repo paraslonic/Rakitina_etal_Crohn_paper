@@ -1,6 +1,5 @@
 library(ape)
 library(phangorn) 
-library(vegan)
 
 strains_num <-  read.delim("../tmp/strains_num", head = F)
 colnames(strains_num) <- c("strain","num")
