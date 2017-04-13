@@ -35,8 +35,8 @@ pvalues.commensal = calcP(bytypes.commensal)
 pvalues.adj.commensal = p.adjust(pvalues.commensal)
 pvalues.adj.commensal_bonferroni = p.adjust(pvalues.commensal, method = "bonferroni")
 
-comb = data.frame(bytypes.commensal, pvalues.commensal,pvalues.adj.commensal)
-write.csv(comb, "Suppltable-s03-4-5.csv", quote = FALSE)
+comb = data.frame(id=rownames(bytypes.commensal), bytypes.commensal, pvalues.commensal,pvalues.adj.commensal)
+write.table(comb, "table.csv", quote = FALSE, sep="\t", row.names=FALSE)
 
 pdf("Figure7.pdf")
 the.gene.bool = gene.bool[which(pvalues.commensal < 0.01),]
