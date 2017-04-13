@@ -15,7 +15,7 @@ for (i in grep(",", og_id$id)){
 }
 og_id = .og_id
 
-t = fread("table.csv")
+t = fread("table.txt")
 og_pval = data.frame() 
 og = sapply(t$id, function(x) { str_split(x,"___")[[1]][1] } )
 pval = t$pvalues.commensal
@@ -34,7 +34,7 @@ write.table(T, "ongenome.tab", quote = FALSE, sep="\t", row.names=FALSE)
 
 
 T.chr = subset(T, T$contig == "NC_011993")
-
+pdf("pval_on_genome.pdf")
 plot(1,1,xlim=c(0,max(T.chr$pos)),ylim=c(0,1), type = "n")
 for(i in 1:length(T.chr$pos)){
   p = T.chr$pval[i]
@@ -43,3 +43,4 @@ for(i in 1:length(T.chr$pos)){
   lines(c(T.chr$pos[i],T.chr$pos[i]), c(0.2,ypos),
         col = rgb(0,p,p,0.5),cex = 0.001)
 }
+dev.off()
