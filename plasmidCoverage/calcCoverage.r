@@ -20,15 +20,17 @@ calcCov <- function(path, ref.length){
 cov_jj = calcCov("blastout_jj/", 55956)
 cov_lf = calcCov("blastout_lf/", 108379)
 
-t = data.frame(cov_lf$cov , cov_jj$cov)
-rownames(t) = cov_lf$strains
-colnames(t) = c("pLF82","pJJ1886_4")
+par(mar=c(5.1,12,4.1,2.1))
+pdf("plasmid_coverage.pdf")
+barplot(cov_lf$cov, names.arg = cov_lf$strains, las=2, col = "dodgerblue3", 
+        cex.names=  0.6, hor=TRUE, xlab="sequence coverage", main = "pLF82")
 
-pdf("pJJ1886_4_coverage.pdf")
-
-heatmap.2(t(as.matrix(t)), col = colorRampPalette(c("white","blue"))(100),
-          margins=c(18,12), dendrogram = "none", cexRow = 2)
+barplot(cov_jj$cov, names.arg = cov_jj$strains, las=2, col = "dodgerblue3", 
+        cex.names=  0.6, hor=TRUE, xlab="sequence coverage", main = "pJJ1886_4")
 
 dev.off()
 
+t = data.frame(cov_lf$cov , cov_jj$cov)
+rownames(t) = cov_lf$strains
+colnames(t) = c("pLF82","pJJ1886_4")
 write.csv(t,"plasmid_coverage.csv", row.names=FALSE)
