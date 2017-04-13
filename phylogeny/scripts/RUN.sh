@@ -7,8 +7,8 @@ echo "converting genbank files "
 for f in ../gb/*.gbf
 do
 	name=$(basename $f .gbf)
-#	perl gb2faa.pl $f > ../faa/$name.fasta
-#	perl gb2fna.pl $f > ../fna/$name.fasta
+	perl gb2faa.pl $f > ../faa/$name.fasta
+	perl gb2fna.pl $f > ../fna/$name.fasta
 	printf "."
 done
 echo 
