@@ -29,6 +29,10 @@ colnames(T) = c("og","pval","id", "contig", "start","stop")
 T$start = as.numeric(as.character(T$start))
 T$stop = as.numeric(as.character(T$stop))
 T$pos =  0.5*(T$start + T$stop)
+
+write.table(T, "ongenome.tab", quote = FALSE, sep="\t", row.names=FALSE)
+
+
 T.chr = subset(T, T$contig == "NC_011993")
 
 plot(1,1,xlim=c(0,max(T.chr$pos)),ylim=c(0,1), type = "n")
