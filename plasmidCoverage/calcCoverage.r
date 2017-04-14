@@ -20,13 +20,14 @@ calcCov <- function(path, ref.length){
 cov_jj = calcCov("blastout_jj/", 55956)
 cov_lf = calcCov("blastout_lf/", 108379)
 
-par(mar=c(5.1,12,4.1,2.1))
+
 pdf("plasmid_coverage.pdf")
+par(mar=c(5.1,12,4.1,2.1))
 barplot(cov_lf$cov, names.arg = cov_lf$strains, las=2, col = "dodgerblue3", 
-        cex.names=  0.6, hor=TRUE, xlab="sequence coverage", main = "pLF82")
+        cex.names=  0.3, hor=TRUE, xlab="sequence coverage", main = "pLF82")
 
 barplot(cov_jj$cov, names.arg = cov_jj$strains, las=2, col = "dodgerblue3", 
-        cex.names=  0.6, hor=TRUE, xlab="sequence coverage", main = "pJJ1886_4")
+        cex.names=  0.3, hor=TRUE, xlab="sequence coverage", main = "pJJ1886_4")
 
 dev.off()
 
