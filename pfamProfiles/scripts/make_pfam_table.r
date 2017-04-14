@@ -1,4 +1,4 @@
-#system('for f in ../pfams/*.pfam; do sed -i "s/\\s\\+/\t/g" $f; done')
+system('for f in ../pfams/*.pfam; do sed -i "s/\\s\\+/\t/g" $f; done')
 
 library("reshape2")
 
