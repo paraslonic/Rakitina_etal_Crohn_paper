@@ -5,7 +5,6 @@ source("ecoliGroups.r")
 gene.table = read.delim("ortho_table.txt", check.names = F)
 rownames(gene.table) = paste(gene.table$id, gene.table$product, sep = "___")
 gene.table = gene.table[,-c(1,2,match("strains", colnames(gene.table)))]
-write.csv(gene.table, "genes_raw.csv")
 gene.bool = gene.table
 gene.bool[gene.bool > 1] = 1
 
@@ -31,21 +30,21 @@ calcP = function(groups) { return(apply(groups, 1, function(x) { m1 = matrix(x,2
 
 ### commensal
 bytypes.commensal = cbind(crohnall.yes, crohnall.no, commensal.yes, commensal.no)
-pvalues.commensal = calcP(bytypes.commensal) 
-pvalues.adj.commensal = p.adjust(pvalues.commensal)
-pvalues.adj.commensal_bonferroni = p.adjust(pvalues.commensal, method = "bonferroni")
+pvalues = calcP(bytypes.commensal) 
+pvalues.adj = p.adjust(pvalues)
+pvalues.adj.bh = p.adjust(pvalues, method = "BH")
 
-comb = data.frame(id=rownames(bytypes.commensal), bytypes.commensal, pvalues.commensal,pvalues.adj.commensal)
-write.table(comb, "table.csv", quote = FALSE, sep="\t", row.names=FALSE)
+comb = data.frame(id=rownames(bytypes.commensal), bytypes.commensal, pvalues,pvalues.adj, pvalues.adj.bh)
+write.table(comb, "table.txt", quote = FALSE, sep="\t", row.names=FALSE)
 
 pdf("Figure7.pdf")
-the.gene.bool = gene.bool[which(pvalues.commensal < 0.01),]
+the.gene.bool = gene.bool[which(pvalues < 0.01),]
 the.gene.bool. = the.gene.bool
 
 heatmap.2(as.matrix(the.gene.bool.), col = c("gray20","orange"), trace = "none",
           margins=c(8,12),cexCol = 0.5, cexRow=0.5, main = "pvalue < 0.01")
 
-the.gene.bool = gene.bool[which(pvalues.commensal < 0.05),]
+the.gene.bool = gene.bool[which(pvalues < 0.05),]
 the.gene.bool. = the.gene.bool
 heatmap.2(as.matrix(the.gene.bool.), col = c("gray20","orange"), trace = "none",
           margins=c(8,12),cexCol = 0.5, cexRow=0.1, main = "pvalue < 0.05")
