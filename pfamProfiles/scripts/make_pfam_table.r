@@ -1,4 +1,4 @@
-system('for f in ../pfams/*.pfam; do sed -i "s/\\s\\+/\t/g" $f; done')
+#system('for f in ../pfams/*.pfam; do sed -i "s/\\s\\+/\t/g" $f; done')
 
 library("reshape2")
 
@@ -9,7 +9,7 @@ pfam.files = dir("../pfams","*.pfam")
 
 for(f in pfam.files){ # read pfam file for each strain
   name = sub(".pfam","", f)
-  t = read.delim(paste0("pfams/",f), skip = 28, head = F)
+  t = read.delim(paste0("../pfams/",f), skip = 28, head = F)
   pfams.long = rbind(pfams.long, data.frame(t, name = paste0(t$V6, "___", t$V7, "___", t$V8)) )
   pfams = rbind(pfams, data.frame(rep(name, nrow(t)), name = paste0(t$V6, "___", t$V7, "___", t$V8))) 
 }
