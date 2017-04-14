@@ -57,7 +57,7 @@ strains = sub("_uid.+", "", strains,perl = T)
   
   legend("left",c("Crohn, this study","Crohn, other studies","Pathogenic","Non pathogenic","Commensal", "Unknown"), 
          col=  c(rce.colors, litc.colors, path.colors, nonpath.colors, commensal.colors,  "gray90")
-         , cex = 1.2,  bty = "n",   y.intersp=1.2, pch=c(19,17,18,15,20))
+         , cex = 1.2,  bty = "n",   y.intersp=1.2, pch=c(19,17,18,15,16,20))
   
   dev.off()
   
