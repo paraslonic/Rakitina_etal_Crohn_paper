@@ -47,18 +47,18 @@ strains = sub("Escherichia_coli_", "", strains)
 strains = sub("_uid.+", "", strains,perl = T)
 
 #pdf("Figure5.pdf",)
-png("Figure5.png", width = 2400, height = 2400, units = 'px', res = 300)
-
-
-plot(x, y, xlab="Coordinate 1", ylab="Coordinate 2", cex.lab = 0.6, cex.axis = 0.6,
-     main="", type="p", pch = pchs, xlim = c(-0.016, -0.008), ylim = c(-0.04, 0.028),
-     cex = 1.5, col = colors)
-
-
-legend("left",c("Crohn, this study","Crohn, other studies","Pathogenic","Non pathogenic","Commensal", "Unknown"), 
-       col=  c(rce.colors, litc.colors, path.colors, nonpath.colors, commensal.colors,  "gray90")
-       , cex = 1.2,  bty = "n",   y.intersp=1.2, pch=c(19,17,18,15,20))
-
-dev.off()
-
-
+  png("../Figure5.png", width = 2400, height = 2400, units = 'px', res = 300)
+  
+  
+  plot(x, y, xlab="Coordinate 1", ylab="Coordinate 2", cex.lab = 0.6, cex.axis = 0.6,
+       main="", type="p", pch = pchs, xlim = c(-0.016, -0.008), ylim = c(-0.04, 0.028),
+       cex = 1.5, col = colors)
+  
+  
+  legend("left",c("Crohn, this study","Crohn, other studies","Pathogenic","Non pathogenic","Commensal", "Unknown"), 
+         col=  c(rce.colors, litc.colors, path.colors, nonpath.colors, commensal.colors,  "gray90")
+         , cex = 1.2,  bty = "n",   y.intersp=1.2, pch=c(19,17,18,15,20))
+  
+  dev.off()
+  
+  
