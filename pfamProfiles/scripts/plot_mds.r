@@ -46,7 +46,7 @@ pchs[strains %in% crohns.ref ] = 17
 strains = sub("Escherichia_coli_", "", strains)
 strains = sub("_uid.+", "", strains,perl = T)
 
-#pdf("Figure5.pdf",)
+
   png("../Figure5.png", width = 2400, height = 2400, units = 'px', res = 300)
   
   
