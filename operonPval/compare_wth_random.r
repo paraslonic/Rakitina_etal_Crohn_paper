@@ -2,6 +2,7 @@
 
 pval <- 0.05
 MIN_OPERON_LENGTH  <- 1
+PERMUTATIONS <- 10000
 
 gene.tab  <- read.delim("lf82genes.txt", head = T)
 gene.tab  <- gene.tab[,c("id","prok","prod")]
@@ -40,7 +41,7 @@ observed.completness  <- gene.per.op.obs$completness
 
 l.gene.per.op.rand  <- list()
 
-for (ind in 1:100){
+for (ind in 1:PERMUTATIONS){
   rand.op.id.v <- gene.info$OperonID
   rand.op.id.v <- rand.op.id.v[sample.int(length(rand.op.id.v))]
   gene.info$rand.op.id <- rand.op.id.v
