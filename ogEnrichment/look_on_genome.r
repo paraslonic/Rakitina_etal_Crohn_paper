@@ -1,3 +1,4 @@
+library("data.table")
 library("stringr")
 
 groups_genes = read.delim("ortho_table_names.txt",head = TRUE)
@@ -18,7 +19,7 @@ og_id = .og_id
 t = fread("table.txt")
 og_pval = data.frame() 
 og = sapply(t$id, function(x) { str_split(x,"___")[[1]][1] } )
-pval = t$pvalues.commensal
+pval = t$pvalues
 
 og_pval = data.frame(og, pval)
 
@@ -34,7 +35,7 @@ write.table(T, "ongenome.tab", quote = FALSE, sep="\t", row.names=FALSE)
 
 
 T.chr = subset(T, T$contig == "NC_011993")
-pdf("pval_on_genome.pdf")
+png("pval_on_genome.png", width = 6000)
 plot(1,1,xlim=c(0,max(T.chr$pos)),ylim=c(0,1), type = "n")
 for(i in 1:length(T.chr$pos)){
   p = T.chr$pval[i]
@@ -44,3 +45,6 @@ for(i in 1:length(T.chr$pos)){
         col = rgb(0,p,p,0.5),cex = 0.001)
 }
 dev.off()
+
+
+
