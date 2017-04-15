@@ -40,19 +40,16 @@ getPvaluFromRandomized = function(){
   commensal.columns = !crohnall.columns
   commensal.yes = apply(gene.bool[, commensal.columns], 1, sum)
   commensal.no = sum(commensal.columns) - commensal.yes
-  
-  # fisher
+ 
   calcP = function(groups) { return(apply(groups, 1, function(x) { m1 = matrix(x,2,2); ft = fisher.test(m1); return (ft$p.value) } )) }
   
-  ### commensal
-  bytypes.commensal = cbind(crohnall.yes, crohnall.no, commensal.yes, commensal.no)
   pvalues = calcP(bytypes.commensal) 
   return(pvalues)  
 }
 
 l.pval = list()
-print("perfoming 100 reshufflings...")
-for(i in 1:100){
+print("perfoming 1000 reshufflings...")
+for(i in 1:1000){
   cat(".")
   l.pval[[i]]=getPvaluFromRandomized()
 }
@@ -64,9 +61,13 @@ pval.rand = unlist(l.pval)
 sum(pval.rand < 0.05)/length(l.pval)
 sum(pvalues.observed < 0.05)
 
-pvalrandtab = as.data.frame(table(as.factor(pval.rand)))
-pvalobstab = as.data.frame(table(as.factor(pvalues.observed)))
+pvalue = sum(sapply(l.pval, function(x) {sum(x < 0.05)}) >= 379)/length(l.pval)
 
-tab = merge(pvalobstab, pvalrandtab, by="Var1")
-chisq.test(tab$Freq.x, tab$Freq.y)
+
+# chi square
+# pvalrandtab = as.data.frame(table(as.factor(pval.rand)))
+# pvalobstab = as.data.frame(table(as.factor(pvalues.observed)))
+# 
+# tab = merge(pvalobstab, pvalrandtab, by="Var1")
+# chisq.test(tab$Freq.x, tab$Freq.y)
 
