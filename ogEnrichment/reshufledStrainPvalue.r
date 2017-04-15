@@ -59,15 +59,6 @@ hist((unlist(l.pval)), breaks = 50, xlim=c(0,1), main = "reshufled", xlab = "p-v
 
 pval.rand = unlist(l.pval)
 sum(pval.rand < 0.05)/length(l.pval)
-sum(pvalues.observed < 0.05)
-
-pvalue = sum(sapply(l.pval, function(x) {sum(x < 0.05)}) >= 379)/length(l.pval)
-
-
-# chi square
-# pvalrandtab = as.data.frame(table(as.factor(pval.rand)))
-# pvalobstab = as.data.frame(table(as.factor(pvalues.observed)))
-# 
-# tab = merge(pvalobstab, pvalrandtab, by="Var1")
-# chisq.test(tab$Freq.x, tab$Freq.y)
-
+obs.pval = sum(pvalues.observed < 0.05)
+pvalue = sum(sapply(l.pval, function(x) {sum(x < 0.05)}) >= obs.pval)/length(l.pval)
+print("pvalue=",pvalue)
